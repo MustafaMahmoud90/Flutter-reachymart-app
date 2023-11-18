@@ -8,24 +8,25 @@ import 'package:reachymart/features/components/sub_title.dart';
 import 'package:reachymart/features/view/home/homescreen.dart';
 import 'package:reachymart/features/widgets/item_page_view.dart';
 
-class OnborDing extends StatefulWidget {
-  const OnborDing({super.key});
+class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({super.key});
 
   @override
-  State<OnborDing> createState() => _OnborDingState();
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
-class _OnborDingState extends State<OnborDing> {
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   PageController? pageController;
 
   @override
   void initState() {
+    super.initState();
+
     pageController = PageController(
       initialPage: 0,
     )..addListener(() {
         setState(() {});
       });
-    super.initState();
   }
 
   @override
@@ -34,20 +35,19 @@ class _OnborDingState extends State<OnborDing> {
       backgroundColor: kShadowColor,
       body: Stack(
         children: [
-          CustomPageView(
-            pageController: pageController,
-          ),
+          CustomPageView(pageController: pageController),
           Positioned(
               bottom: 50,
               right: 10,
-              child: SlidarIndecator(
-                dotIndex: pageController!.hasClients ? pageController?.page : 0,
-              )),
+              child: SliderIndicator(
+                  dotIndex:
+                      pageController!.hasClients ? pageController?.page : 0)),
           Positioned(
             bottom: 55,
             left: 20,
             child: InkWell(
-              onTap: () => navigateAndFinish(context, const HomeScreen()),
+              onTap: () => navigateAndFinish(
+                  context, const HomeScreen(url: 'https://reachymart.com/')),
               child: SubTitle(
                   text: pageController!.hasClients
                       ? (pageController?.page == 2 ? 'ابدا' : 'تخطي')
@@ -63,12 +63,10 @@ class _OnborDingState extends State<OnborDing> {
   }
 }
 
-class SlidarIndecator extends StatelessWidget {
-  const SlidarIndecator({
-    super.key,
-    required this.dotIndex,
-  });
-  final double? dotIndex;
+class SliderIndicator extends StatelessWidget {
+  const SliderIndicator({super.key, required this.dotIndex});
+
+  final num? dotIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +74,10 @@ class SlidarIndecator extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          const SizedBox(),
-          const SizedBox(
-            width: 280,
-          ),
+          const SizedBox(width: 280),
           DotsIndicator(
             dotsCount: 3,
-            position: dotIndex!,
+            position: dotIndex!.toInt(),
             decorator: DotsDecorator(
               size: const Size.square(8.0),
               activeSize: const Size(18.0, 9.0),

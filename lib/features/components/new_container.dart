@@ -15,15 +15,19 @@ class NewContainer extends StatelessWidget {
     return Container(
       width: 110,
       height: 35,
-     decoration:  BoxDecoration(
-     borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: textInfoColor, width: 0.5),
-     ),
-     child:  Row(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: textInfoColor, width: 0.5),
+      ),
+      child: Row(
         children: [
-          SubTitle(text: text, size: 15, color: kBlackColor, weight: FontWeight.w400),
-          const SizedBox(width: 6,),
-          Image.asset(image,width: 15,),
+          SubTitle(
+              text: text,
+              size: 15,
+              color: kBlackColor,
+              weight: FontWeight.w400),
+          const SizedBox(width: 6),
+          Image.asset(image, width: 15),
         ],
      ),
     );

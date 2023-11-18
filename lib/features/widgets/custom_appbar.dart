@@ -19,7 +19,7 @@ class CustomAppBar extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 185,
-          color: backCololr,
+          color: backColor,
           child: Column(
             children: [
               Padding(
